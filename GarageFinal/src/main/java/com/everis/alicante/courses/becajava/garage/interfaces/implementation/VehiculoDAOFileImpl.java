@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -102,6 +103,12 @@ public class VehiculoDAOFileImpl implements VehiculoDAO {
 	@Override
 	public void deleteVehiculo(String matricula) throws IOException {
 		
+	}
+
+	@Override
+	public Connection getConnection() throws IOException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

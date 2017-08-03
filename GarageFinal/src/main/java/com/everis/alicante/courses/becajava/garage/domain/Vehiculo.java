@@ -5,6 +5,7 @@ public class Vehiculo {
 	private String matricula;
 
 	private String tipoVehiculo;
+	private String insertarVehiculo;
 	
 	public String getMatricula() {
 		return matricula;

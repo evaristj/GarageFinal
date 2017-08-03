@@ -3,16 +3,27 @@ package com.everis.alicante.courses.becajava.garage.interfaces.implementation;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.Map;
 import java.util.TreeMap;
+
+import javax.swing.text.Document;
 
 import com.everis.alicante.courses.becajava.garage.domain.Cliente;
 import com.everis.alicante.courses.becajava.garage.interfaces.ClienteDAO;
 
 public class ClienteDAOFileImpl implements ClienteDAO {
+	
+ // private static String FILE = "c:/temp/FirstPdf.pdf";
+	
+	 private static void addEmptyLine() {
+
+ }
+
 
 	@Override
 	public Map<String,Cliente> readClientes() throws IOException {
@@ -52,6 +63,12 @@ public class ClienteDAOFileImpl implements ClienteDAO {
 	@Override
 	public void createCliente(Cliente cliente) throws IOException {
 		
+		//falta metodo para añadir linea vacia al pdf y más cosas
+//		 Document document = new Document("c:/temp/FirstPdf.pdf");
+//     PdfWriter writer.getInstance(document, new FileOutputStream(FILE));
+		
+		
+		
 		 File file= new File("src/main/resources/Clientes.txt");
 		 FileWriter writer= new FileWriter(file,true);
 		 BufferedWriter  buffer= new BufferedWriter(writer);
@@ -69,6 +86,7 @@ public class ClienteDAOFileImpl implements ClienteDAO {
 		 
 		 Cliente clienteTemp=null;			
 		 String linea;
+		 
 		 
 		 File file= new File("src/main/resources/Clientes.txt");
 		 FileReader reader= new FileReader(file);
@@ -100,6 +118,13 @@ public class ClienteDAOFileImpl implements ClienteDAO {
 	@Override
 	public void deleteCliente(String nif) {
 
+	}
+
+
+	@Override
+	public Connection getConnection() throws IOException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,8 +1,11 @@
 package com.everis.alicante.courses.becajava.garage.domain;
 
 import java.util.Calendar;
+import org.apache.log4j.Logger;
 
 public class GarajeException extends Exception{
+	
+	static Logger log= Logger.getLogger(GarajeException.class);
 	
 
 	private static final long serialVersionUID = -8890393005500715068L;

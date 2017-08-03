@@ -3,6 +3,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import com.everis.alicante.courses.becajava.garage.domain.Camion;
@@ -22,6 +23,8 @@ import com.everis.alicante.courses.becajava.garage.interfaces.implementation.Cli
 import com.everis.alicante.courses.becajava.garage.interfaces.implementation.PlazaDAOFileImp;
 import com.everis.alicante.courses.becajava.garage.interfaces.implementation.ReservaDAOFileImp;
 import com.everis.alicante.courses.becajava.garage.interfaces.implementation.VehiculoDAOFileImpl;
+import com.everis.alicante.courses.becajava.garage.interfaces.implementation.VehiculoDAOJDBCImpl;
+import com.everis.alicante.courses.becajava.garage.jdbc.VehiculoDaoJDBC;
 import com.everis.alicante.courses.becajava.garage.utils.ValidadorNIF;
 
 public class ControladorGarajeImpl implements ControladorGaraje{
@@ -289,6 +292,49 @@ public class ControladorGarajeImpl implements ControladorGaraje{
 		} catch (Exception e) {		
 			GarajeException ex= new GarajeException(e);
 			throw ex;
+		}
+		
+	}
+
+	@Override
+	public void insertarVehiculo() throws GarajeException {
+		
+		VehiculoDaoJDBC vehiculoDaoJdbc = new VehiculoDAOJDBCImpl();
+		Vehiculo vehiculo = new Vehiculo();
+		
+//		System.out.println("Inserte tipo vehiculo 1 o 2");
+		
+//		Scanner in = new Scanner(System.in);	
+//		vehiculo.setMatricula("9999");
+//		vehiculo.setTipoVehiculo("1");
+//		
+//		System.out.println("matricula");
+		
+//		Scanner in2 = new Scanner(System.in);		
+//		vehiculo.setMatricula(in2.nextLine());
+		
+		try {
+			vehiculoDaoJdbc.createVehiculo(vehiculo);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void readVehiculo() throws GarajeException {
+		
+		VehiculoDaoJDBC dao = new VehiculoDAOJDBCImpl();
+		Scanner sc = new Scanner(System.in);
+		
+		try {
+			System.out.println("Introduce la matricula que quieras recuperar");
+			dao.readVehiculo(sc.nextLine());
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 	}

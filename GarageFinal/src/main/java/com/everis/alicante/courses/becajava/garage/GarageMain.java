@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.everis.alicante.courses.becajava.garage.controller.ControladorExcepciones;
 import com.everis.alicante.courses.becajava.garage.controller.ControladorExcepcionesImpl;
 import com.everis.alicante.courses.becajava.garage.controller.ControladorGaraje;
@@ -15,6 +17,8 @@ import com.everis.alicante.courses.becajava.garage.domain.GarajeException;
 import com.everis.alicante.courses.becajava.garage.domain.Plaza;
 
 public class GarageMain {
+	
+		static Logger log = Logger.getLogger(GarageMain.class);
 
 		static Garaje garaje;
 		
@@ -47,6 +51,9 @@ public class GarageMain {
 		System.out.println("5:Listar Reservas");
 		System.out.println("6:Listar Vehiculos");
 		System.out.println("7:Listar por Fecha de Reserva");
+		System.out.println("8:Insertar Vehículo");
+		System.out.println("9:Listar Vehículos");
+
 		
 		try {
 		
@@ -81,6 +88,12 @@ public class GarageMain {
 				case 7:	
 					validarFechasEntrada();
 					controlador.listarReservasByFecha(fechaInicio, fechaFin);		
+					break;
+				case 8:
+					controlador.insertarVehiculo();
+					break;
+				case 9:
+					controlador.readVehiculo();
 					break;
 				default:
 					System.out.println("Error");
