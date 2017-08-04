@@ -52,8 +52,8 @@ public class GarageMain {
 		System.out.println("6:Listar Vehiculos");
 		System.out.println("7:Listar por Fecha de Reserva");
 		System.out.println("8:Insertar Vehículo");
-		System.out.println("9:Listar Vehículos");
-
+		System.out.println("9:Listar Vehículos por matricula");
+		System.out.println("10:Listar todos los Vehículos");
 		
 		try {
 		
@@ -94,6 +94,9 @@ public class GarageMain {
 					break;
 				case 9:
 					controlador.readVehiculo();
+					break;
+				case 10:
+					controlador.readAllVehiculo();
 					break;
 				default:
 					System.out.println("Error");

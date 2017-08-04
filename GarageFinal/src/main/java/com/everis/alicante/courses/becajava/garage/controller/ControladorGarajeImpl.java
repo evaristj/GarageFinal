@@ -6,6 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.io.IOException;
+
+
 import com.everis.alicante.courses.becajava.garage.domain.Camion;
 import com.everis.alicante.courses.becajava.garage.domain.Cliente;
 import com.everis.alicante.courses.becajava.garage.domain.Coche;
@@ -336,6 +339,22 @@ public class ControladorGarajeImpl implements ControladorGaraje{
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		
+	}
+
+	@Override
+	public void readAllVehiculo() throws GarajeException {
+		
+		VehiculoDaoJDBC vehiculoJdbc = new VehiculoDAOJDBCImpl();
+		
+		List<Vehiculo> listaVehiculos = vehiculoJdbc.readAll();
+		
+		for (Iterator<Vehiculo> iterator = listaVehiculos.iterator(); iterator.hasNext();) {
+			Vehiculo vehiculo = (Vehiculo) iterator.next();
+			System.out.println("La matricula es: " + vehiculo.getMatricula()
+					+ " y el tipo de vehiculo es: " + vehiculo.getTipoVehiculo());
+		}
+		
 		
 	}
 

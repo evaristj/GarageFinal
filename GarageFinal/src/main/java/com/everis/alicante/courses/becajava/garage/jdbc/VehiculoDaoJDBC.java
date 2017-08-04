@@ -17,7 +17,7 @@ public interface VehiculoDaoJDBC {
 	
 	public Connection getConnection () throws IOException;
 
-	List<Vehiculo> readAll() throws IOException;
+	public List<Vehiculo> readAll() throws IOException;
 
 
 }

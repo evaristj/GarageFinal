@@ -3,14 +3,12 @@ package com.everis.alicante.courses.becajava.garage.interfaces.implementation;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import com.everis.alicante.courses.becajava.garage.domain.Cliente;
 import com.everis.alicante.courses.becajava.garage.domain.Vehiculo;
 import com.everis.alicante.courses.becajava.garage.jdbc.VehiculoDaoJDBC;
 
@@ -25,18 +23,17 @@ public class VehiculoDAOJDBCImpl implements VehiculoDaoJDBC{
 	@Override
 	public List<Vehiculo> readAll() {
 		Connection cn = null;
-		Statement st = null;
+		PreparedStatement pst = null;
 		Vehiculo vehiculo = null;
 		List<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
 		
 		try {
 			
-			cn = this.getConnection();
-			st = cn.createStatement();
-			
 			String sql = "SELECT * FROM VEHICULOS";
+			cn = this.getConnection();
+			pst = cn.prepareStatement(sql);
 			
-			ResultSet rs = st.executeQuery(sql);
+			ResultSet rs = pst.executeQuery(sql);
 //			boolean hasNext = rs.next();
 			while(rs.next()) {
 				vehiculo = new Vehiculo();
@@ -145,8 +142,40 @@ public class VehiculoDAOJDBCImpl implements VehiculoDaoJDBC{
 
 	@Override
 	public List<Vehiculo> readVehiculos() throws IOException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Connection cn = null;
+		PreparedStatement pst = null;
+		Vehiculo vehiculo = null;
+		List<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+		
+		try {
+			
+			String sql = "SELECT *FROM VEHICULOS";
+			
+			cn = this.getConnection();
+			pst = cn.prepareStatement(sql);
+			
+			ResultSet rs = pst.executeQuery();
+			
+			while (rs.next()) {
+				vehiculo = new Vehiculo();
+				vehiculo.setMatricula(rs.getString("matricula"));
+				vehiculo.setTipoVehiculo(rs.getString("tipo_vehiculos"));
+				listaVehiculos.add(vehiculo);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Error al leer vehiculos: " + e.getMessage());
+		} finally {
+				try {
+					cn.close();
+				} catch (SQLException e) {
+						e.printStackTrace();
+				}
+		}
+	
+		
+		return listaVehiculos;
 	}
 
 }
